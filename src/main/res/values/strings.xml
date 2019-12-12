@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BienestarApp</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email institucional</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">Credenciales incorrectas</string>
+    <string name="bienvenida">¡Bienvenido!</string>
+    <string name="llenarCampos">Completa todos los campos</string>
+    <string name="busqueda">¿Qué quieres solicitar?</string>
+    <string name="formato_hora">hh:mm</string>
+    <string name="dialog_solicitar_txt_hora">¿A qué hora lo entregarás?</string>
+</resources>

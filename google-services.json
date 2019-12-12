@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "874386427533",
+    "firebase_url": "https://bienestarapp.firebaseio.com",
+    "project_id": "bienestarapp",
+    "storage_bucket": "bienestarapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874386427533:android:6e92c79b0ad949ca18dcc4",
+        "android_client_info": {
+          "package_name": "com.example.bienestarapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874386427533-7khum54s1v3ue0saj1gh04897vlibejt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bienestarapp",
+            "certificate_hash": "38777d3616fd38def5d2057f0948d5a07b95a9c9"
+          }
+        },
+        {
+          "client_id": "874386427533-e39tffhda1te6jk2nfklgobbncevqjfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9mFM38eVzFOSM8mCogj2oWePIW0A55Yg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874386427533-e39tffhda1te6jk2nfklgobbncevqjfs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
