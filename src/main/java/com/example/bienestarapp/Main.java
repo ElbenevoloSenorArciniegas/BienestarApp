@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.bienestarapp.Util.DBManager;
@@ -14,6 +15,7 @@ public class Main extends AppCompatActivity {
 
     CardView deportes, musica;
     TextInputEditText busqueda;
+    ImageButton btnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class Main extends AppCompatActivity {
         deportes = findViewById(R.id.deportes);
         musica = findViewById(R.id.musica);
         busqueda = findViewById(R.id.busqueda);
+        btnSearch = findViewById(R.id.btnSearch);
 
         deportes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,13 +39,29 @@ public class Main extends AppCompatActivity {
                 DBManager.buscarCategorias("musica",Main.this);
             }
         });
-        busqueda.setOnClickListener(new View.OnClickListener() {
+
+        busqueda.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                buscar();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    btnSearch.setImageDrawable(R.drawable.ic_arrow_forward_black_24dp);
+                    btnSearch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DBManager.buscarPorKeyword(busqueda.getText().toString(),Main.this);
+                        }
+                    });
+                }else{
+                    btnSearch.setImageDrawable(R.drawable.search);
+                    btnSearch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            busqueda.requestFocus();
+                        }
+                    });
+                }
             }
         });
-
     }
 
     private void buscar() {

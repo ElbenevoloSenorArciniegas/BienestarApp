@@ -193,4 +193,35 @@ public class DBManager {
     public static boolean isLoggedAsAdmin(){
         return mAuth.getCurrentUser().getUid().equals(UID_ADMIN);
     }
+
+
+    public static void buscarPorKeyword(final String Keyword, final Context context) {
+        DatabaseReference ref = myRef;
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue().toString();
+                ArrayList<Categoria> Categorias = new ArrayList<>();
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    for (DataSnapshot subCat : child.getChildren()) {
+                        if (subCat.getKey().contains(Keyword)) {
+                            int disp = Integer.parseInt(subCat.child("disponibles").getValue().toString());
+                            Categorias.add(new Categoria(subCat.getKey(), "", disp));
+                        }
+                    }
+                }
+                Intent intent = new Intent(context, Lista.class);
+                intent.putExtra("Categorias", Categorias);
+                context.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(context, "No se ha podido leer la información",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        // [END read_message]
+    }
 }
