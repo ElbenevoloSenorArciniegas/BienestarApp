@@ -2,6 +2,7 @@ package com.example.bienestarapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +45,7 @@ public class Main extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
-                    btnSearch.setImageDrawable(R.drawable.ic_arrow_forward_black_24dp);
+                    btnSearch.setImageDrawable(ContextCompat.getDrawable(Main.this, R.drawable.ic_arrow_forward_black_24dp));
                     btnSearch.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -52,7 +53,7 @@ public class Main extends AppCompatActivity {
                         }
                     });
                 }else{
-                    btnSearch.setImageDrawable(R.drawable.search);
+                    btnSearch.setImageDrawable(ContextCompat.getDrawable(Main.this, R.drawable.search));
                     btnSearch.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

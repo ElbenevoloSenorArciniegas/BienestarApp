@@ -13,4 +13,5 @@
     <string name="busqueda">¿Qué quieres solicitar?</string>
     <string name="formato_hora">hh:mm</string>
     <string name="dialog_solicitar_txt_hora">¿A qué hora lo entregarás?</string>
+    <string name="no_data_available">No se han encontrado registros</string>
 </resources>
