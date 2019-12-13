@@ -56,6 +56,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ItemViewHolder> {
                     DBManager.devolver(holder.itemView.getContext(),nombre);
                 }
             });
+            holder.prestado_a.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBManager.buscarDatosEstudiante(prestado_a, holder.itemView.getContext());
+                }
+            });
+        }else{
+
         }
     }
 

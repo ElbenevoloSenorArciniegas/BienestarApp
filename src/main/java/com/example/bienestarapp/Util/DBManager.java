@@ -1,6 +1,8 @@
 package com.example.bienestarapp.Util;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -122,7 +124,6 @@ public class DBManager {
                         DataSnapshot subCat = categoria.child(subCat_name);
                         for (DataSnapshot item: subCat.getChildren()) {
                             if(item.hasChild("hora_entrega")) {
-                                System.out.println(item.getValue().toString());
                                 SimpleDateFormat df = new SimpleDateFormat("HH:mm");
                                 Date hora = null;
                                 try {
@@ -130,7 +131,16 @@ public class DBManager {
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-                                Items.add(new Item(item.getKey(), item.child("prestado_a").getValue().toString(), hora));
+                                String prestado_a = item.child("prestado_a").getValue().toString();
+                                if(prestado_a.equals("N/A")){
+                                    Items.add(new Item(item.getKey(), prestado_a, hora));
+                                }else{
+                                    for (DataSnapshot estudiante: dataSnapshot.child("estudiantes").getChildren()) {
+                                        if(estudiante.getKey().equals(prestado_a)){
+                                            Items.add(new Item(item.getKey(), estudiante.child("codigo").getValue().toString(), hora));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -213,6 +223,30 @@ public class DBManager {
                 Intent intent = new Intent(context, Lista.class);
                 intent.putExtra("Categorias", Categorias);
                 context.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(context, "No se ha podido leer la información",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        // [END read_message]
+    }
+
+    public static void buscarDatosEstudiante(final String prestado_a, final Context context) {
+        DatabaseReference ref = myRef.child("estudiantes");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot est: dataSnapshot.getChildren()) {
+                    if(est.child("codigo").getValue().toString().equals(prestado_a)){
+                        System.out.println(est.child("nombre").toString());
+                        Toast.makeText(context, est.child("nombre").getValue().toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
             }
 
             @Override
